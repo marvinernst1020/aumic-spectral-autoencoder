@@ -25,6 +25,7 @@ However, while that paper estimates stellar parameters across multiple stars, th
 aumicAE/ ├── data/ │ ├── AUMic/ # Raw CARMENES FITS files │ └── carvis_visA/ # vis_a_files.txt (paths to used files) │ ├── notebooks/ │ ├── 01_explore_carvis_visA.ipynb # Plotting and inspecting spectra │ └── 02_prototype_autoencoder.ipynb # First autoencoder prototype │ ├── src/ │ ├── data/ │ │ └── preprocess.py # Data loading, normalization │ ├── models/ │ │ └── autoencoder.py # Autoencoder architecture │ └── train.py # Training logic │ ├── configs/ │ └── base.yaml # Model/training configuration │ ├── outputs/ │ ├── models/ # Trained models │ ├── logs/ # Training logs │ └── plots/ # Visualizations and reconstructions │ ├── requirements.txt # (Optional) Python dependencies └── README.md # This file
 
 The actual files are saved in aumicAE1 as the size exceeds the data limit of GitHub.
+
 ---
 
 ## Environment Setup
