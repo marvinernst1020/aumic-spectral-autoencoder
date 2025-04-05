@@ -1,0 +1,12 @@
+# Requirements
+numpy
+pandas
+matplotlib
+scikit-learn
+tensorflow
+torch
+torchvision
+jupyterlab
+astropy
+astroquery
+lightkurve

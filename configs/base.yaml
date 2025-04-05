@@ -1,0 +1,27 @@
+# Base configuration file for the AUMICAE project
+data:
+  order: 30
+  clip_min: 0.0
+  clip_max: 5.0
+  normalize_epsilon: 1e-8
+
+model:
+  type: conv_autoencoder
+  latent_dim: 8
+  input_length: 4096
+  filters: [32, 16]
+  kernel_size: 5
+
+training:
+  batch_size: 8
+  epochs: 20
+  validation_split: 0.1
+  optimizer: adam
+  loss: mse
+
+paths:
+  output_dir: outputs/
+  plots_dir: outputs/plots/
+  model_dir: outputs/models/
+
+
