@@ -22,6 +22,7 @@ However, while that paper estimates stellar parameters across multiple stars, th
 
 ## Directory Structure
 
+```plaintext
 aumicAE/ 
 ├── notebooks/
 │   ├── 01_explore_carvis.ipynb
@@ -49,7 +50,7 @@ aumicAE/
 │   └── logs/
 ├── requirements.txt
 └── README.md
-
+```
 
 Note: Large data files are stored in aumicAE1/ due to repository size limits.
 
@@ -65,50 +66,25 @@ Note: Large data files are stored in aumicAE1/ due to repository size limits.
 
 ## Status
 
-- ✅ Data loading and normalization (single order)
-- ✅ Prototype 1D convolutional autoencoder
-- ✅ Plotting and reconstruction evaluation
+- Data loading & normalization: Multi-order stacking, standard or denoising input.
 
-- 🔜 Latent space visualization and temporal analysis
-- 🔜 Extension to stacked multi-order inputs
+- Prototype Autoencoder: Simple Conv1D autoencoder tested on single & multi-order input.
 
-## Status
+- Latent Dimension Analysis: Explored 2–64D latent spaces; identified ~32D as a sweet spot.
 
-    Data loading & normalization
+- Denoising Autoencoder: Injects Gaussian noise and reconstructs clean spectra; shows robust latent representations.
 
-        Multi-order stacking, standard or denoising input.
-
-    Prototype Autoencoder
-
-        Simple Conv1D autoencoder tested on single & multi-order input.
-
-    Latent Dimension Analysis
-
-        Explored 2–64D latent spaces; identified ~32D as a sweet spot.
-
-    Denoising Autoencoder
-
-        Injects Gaussian noise and reconstructs clean spectra; shows robust latent representations.
-
-    Reconstruction Evaluation
-
-        Visual comparisons of reconstructions for Hα (order 25) and Ca II lines (orders 46, 47).
+- Reconstruction Evaluation: Visual comparisons of reconstructions for Hα (order 25) and Ca II lines (orders 46, 47).
 
 ---
 
 ## Next Steps
 
-    Temporal Analysis
+- Temporal Analysis: Examine latent evolution over time; look for periodicities or flare signatures.
 
-        Examine latent evolution over time; look for periodicities or flare signatures.
+- Refine Architecture: Add skip connections, BatchNorm, or deeper layers to improve reconstructions.
 
-    Refine Architecture
-
-        Add skip connections, BatchNorm, or deeper layers to improve reconstructions.
-
-    Correlate with Activity Indicators
-
-        Compare latent parameters with known lines (Hα, Ca II) or photometric flare logs.
+- Correlate with Activity Indicators: Compare latent parameters with known lines (Hα, Ca II) or photometric flare logs.
 
 ---
 
