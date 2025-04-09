@@ -12,26 +12,46 @@ However, while that paper estimates stellar parameters across multiple stars, th
 
 ## Project Goals
 
-- Load and preprocess high-resolution spectra of AU Mic (VIS_A arm)
+- Load and preprocess high-resolution AU Mic spectra (VIS_A arm)
 - Normalize and stack consistent spectral orders
-- Train 1D convolutional autoencoders to learn compressed representations
-- Track changes in latent space over time
-- Relate latent structure to stellar activity and magnetic phenomena
+- Train 1D convolutional autoencoders (standard and denoising) to learn compressed representations
+- Track changes in the latent space over time
+- Correlate latent parameters with stellar activity (e.g., flares, line indices)
 
 ---
 
 ## Directory Structure
 
-aumicAE/ ├── data/ │ ├── AUMic/ # Raw CARMENES FITS files │ └── carvis_visA/ # vis_a_files.txt (paths to used files) │ ├── notebooks/ │ ├── 01_explore_carvis_visA.ipynb # Plotting and inspecting spectra │ └── 02_prototype_autoencoder.ipynb # First autoencoder prototype │ ├── src/ │ ├── data/ │ │ └── preprocess.py # Data loading, normalization │ ├── models/ │ │ └── autoencoder.py # Autoencoder architecture │ └── train.py # Training logic │ ├── configs/ │ └── base.yaml # Model/training configuration │ ├── outputs/ │ ├── models/ # Trained models │ ├── logs/ # Training logs │ └── plots/ # Visualizations and reconstructions │ ├── requirements.txt # (Optional) Python dependencies └── README.md # This file
-aumicAE/
-
+aumicAE/ 
 ├── notebooks/
-│   └── 03_latent_analysis.ipynb
+│   ├── 01_explore_carvis.ipynb
+│   ├── 02_prototype_autoencoder.ipynb
+│   ├── 03_latent_analysis.ipynb
+│   ├── 04_improve_autoencoder.ipynb
+│   └── 05_full_pipeline.ipynb
+├── src/
+│   ├── data/
+│   │   └── preprocess.py          # load_spectrum, normalize_orders
+│   ├── models/
+│   │   └── autoencoder.py         # build_autoencoder(), build_denoising_ae()
+│   ├── train.py                   # train_autoencoder(cfg), train_denoising(cfg)
+│   └── utils/
+│       └── visualization.py       # plot_latent_evolution, plot_denoising
+├── configs/
+│   └── base.yaml                  # orders: [25, 46, 47], latent_dim: 8, ...
+├── data/
+│   ├── carvis_visA/
+│       └── vis_a_files.txt
 ├── outputs/
-│   └── latent/
-│       └── latent_vectors_order30.npy
+│   ├── latent/
+│   ├── models/
+│   ├── plots/
+│   └── logs/
+├── requirements.txt
+└── README.md
 
-The actual files are saved in aumicAE1 as the size exceeds the data limit of GitHub.
+
+Note: Large data files are stored in aumicAE1/ due to repository size limits.
 
 ---
 
@@ -48,8 +68,47 @@ The actual files are saved in aumicAE1 as the size exceeds the data limit of Git
 - ✅ Data loading and normalization (single order)
 - ✅ Prototype 1D convolutional autoencoder
 - ✅ Plotting and reconstruction evaluation
+
 - 🔜 Latent space visualization and temporal analysis
 - 🔜 Extension to stacked multi-order inputs
+
+## Status
+
+    Data loading & normalization
+
+        Multi-order stacking, standard or denoising input.
+
+    Prototype Autoencoder
+
+        Simple Conv1D autoencoder tested on single & multi-order input.
+
+    Latent Dimension Analysis
+
+        Explored 2–64D latent spaces; identified ~32D as a sweet spot.
+
+    Denoising Autoencoder
+
+        Injects Gaussian noise and reconstructs clean spectra; shows robust latent representations.
+
+    Reconstruction Evaluation
+
+        Visual comparisons of reconstructions for Hα (order 25) and Ca II lines (orders 46, 47).
+
+---
+
+## Next Steps
+
+    Temporal Analysis
+
+        Examine latent evolution over time; look for periodicities or flare signatures.
+
+    Refine Architecture
+
+        Add skip connections, BatchNorm, or deeper layers to improve reconstructions.
+
+    Correlate with Activity Indicators
+
+        Compare latent parameters with known lines (Hα, Ca II) or photometric flare logs.
 
 ---
 
