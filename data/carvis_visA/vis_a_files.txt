@@ -11,8 +11,6 @@
 ../data/AUMic/CARVIS/car-20190723T01h38m34s-sci-gtoc-vis_A.fits
 ../data/AUMic/CARVIS/car-20190723T01h45m05s-sci-gtoc-vis_A.fits
 ../data/AUMic/CARVIS/car-20190724T01h40m12s-sci-gtoc-vis_A.fits
-../data/AUMic/CARVIS/car-20190724T01h48m24s-sci-gtoc-vis_A.fits
-../data/AUMic/CARVIS/car-20190724T01h53m37s-sci-gtoc-vis_A.fits
 ../data/AUMic/CARVIS/car-20190724T01h59m44s-sci-gtoc-vis_A.fits
 ../data/AUMic/CARVIS/car-20190726T01h07m10s-sci-gtoc-vis_A.fits
 ../data/AUMic/CARVIS/car-20190726T01h14m04s-sci-gtoc-vis_A.fits
@@ -68,8 +66,6 @@
 ../data/AUMic/CARVIS/car-20191003T19h21m22s-sci-gtoc-vis_A.fits
 ../data/AUMic/CARVIS/car-20191004T20h14m40s-sci-gtoc-vis_A.fits
 ../data/AUMic/CARVIS/car-20191004T20h21m33s-sci-gtoc-vis_A.fits
-../data/AUMic/CARVIS/car-20191005T20h23m58s-sci-gtoc-vis_A.fits
-../data/AUMic/CARVIS/car-20191005T20h32m34s-sci-gtoc-vis_A.fits
 ../data/AUMic/CARVIS/car-20191006T19h54m02s-sci-gtoc-vis_A.fits
 ../data/AUMic/CARVIS/car-20191006T20h01m25s-sci-gtoc-vis_A.fits
 ../data/AUMic/CARVIS/car-20191008T19h43m30s-sci-gtoc-vis_A.fits
@@ -94,8 +90,6 @@
 ../data/AUMic/CARVIS/car-20200902T22h56m05s-sci-gtoc-vis_A.fits
 ../data/AUMic/CARVIS/car-20200905T22h34m37s-sci-gtoc-vis_A.fits
 ../data/AUMic/CARVIS/car-20200906T21h45m47s-sci-gtoc-vis_A.fits
-../data/AUMic/CARVIS/car-20200920T21h49m58s-sci-gtoc-vis_A.fits
-../data/AUMic/CARVIS/car-20201025T19h10m51s-sci-gtoc-vis_A.fits
 ../data/AUMic/CARVIS/car-20201031T19h05m06s-sci-gtoc-vis_A.fits
 ../data/AUMic/CARVIS/car-20201107T18h31m11s-sci-gtoc-vis_A.fits
 ../data/AUMic/CARVIS/car-20201116T18h11m27s-sci-gtoc-vis_A.fits
