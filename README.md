@@ -25,13 +25,17 @@ However, while that paper estimates stellar parameters across multiple stars, th
 ```plaintext
 aumicAE/ 
 ├── notebooks/
+│   ├── check_lines
+│   ├── gif_frames
+│   ├── outputs
 │   ├── 01_explore_carvis.ipynb
 │   ├── 02_prototype_autoencoder.ipynb
 │   ├── 03_latent_analysis.ipynb
 │   ├── 04_improve_autoencoder.ipynb
 │   ├── 05_metadata_analysis.ipynb
 │   ├── 06_SNR_mitigate.ipynb
-│   └── 07_full_pipeline.ipynb
+│   ├── 07_ha_activity_lomb_analysis.ipynb
+│   └── 08_full_pipeline.ipynb
 ├── src/
 │   ├── data/
 │   │   └── preprocess.py          # load_spectrum, normalize_orders
@@ -44,7 +48,9 @@ aumicAE/
 │   └── base.yaml                  # orders: [25, 46, 47], latent_dim: 8, ...
 ├── data/
 │   ├── carvis_visA/
-│       └── vis_a_files.txt
+│   │   ├── vis_a_files_all.txt  
+│   │   └── vis_a_files.txt
+│   └── CARM_VIS_M15.mas           # the mask
 ├── outputs/
 │   ├── latent/
 │   ├── models/
@@ -69,51 +75,73 @@ Note: Large data files are stored in aumicAE1/ due to repository size limits.
 
 ## Status
 
-- **Data Preparation**: Multi-order spectra (orders 25, 46, 47) loaded and normalized. SNR outliers filtered (±3σ), six low-quality observations excluded, final set: 95 spectra.
+- **Data Preparation**: 
+  - Multi-order spectra (orders 25, 46, 47) loaded and normalized.
+  - Order 25 isolated (Hα region cropped).
+  - SNR outliers filtered (±3σ) and six low-quality observations manually excluded (final set: 95 spectra).
+  - Optional resolution reduction implemented for cropped region.
 
-- **Autoencoder Architecture**: Conv1D autoencoder with modular components:
-  - Optional dropout (encoder/decoder/latent)
-  - BatchNormalization after first Conv1D
-  - Latent normalization
-  - Configurable depth and activation functions
+- **Autoencoder Architecture**:
+  - Conv1D-based, flexible design:
+    - Dropout layers (encoder/decoder/latent) optional and tunable.
+    - BatchNormalization after first Conv1D.
+    - Latent normalization (LayerNorm) optional.
+    - Activity regularization (L1) configurable after each layer.
+    - Contractive loss penalty (optional) on bottleneck layer.
+    - Tunable activation functions and depth.
 
 - **Denoising & SNR Bias Mitigation**:
-  - Gaussian noise injection (optional, tunable std)
-  - SNR-weighted MSE loss
-  - SNR decorrelation penalty (optional, partial, configurable α and dimension subset)
-  - Latent vector normalization post-training
-  - Early stopping based on reconstruction loss plateau
-
-- **Training Pipeline**:
-  - Fully modular with options for noise, decorrelation, weighting, dropout, activation, batch size, prefetch, epochs, and stopping criteria.
-  - Batch size of 8 found optimal for stability and SNR decorrelation.
+  - Gaussian noise injection option (configurable std).
+  - SNR-weighted MSE loss.
+  - Latent–SNR decorrelation penalty (partial decorrelation configurable).
+  - Latent space normalization.
+  - Early stopping based on reconstruction loss.
+  - Batch size optimization (8 found optimal for decorrelation and training stability).
 
 - **Evaluation**:
-  - Residual latent–SNR correlations: greatly reduced (Pearson & Spearman)
-  - UMAP projection: no longer structured by SNR
-  - Latent–activity correlation: RV, FWHM, BIS, CONTRAST, HALPHA show interpretable structure
-  - Regression on latent space to predict HALPHA shows promise (R² ≈ 0.093)
+  - Residual latent–SNR correlations strongly reduced.
+  - UMAP projections no longer structured by SNR.
+  - Lomb-Scargle periodograms applied:
+    - Latents show strong signals close to the stellar rotation period.
+    - False Alarm Probabilities (FAP) calculated.
+    - Second harmonics checked.
+  - HALPHA, RV, FWHM, BIS: independent periodogram analysis performed.
+  - GIF animations generated to visualize temporal evolution of spectral reconstructions.
+
+- **Regression on Latent Space**:
+  - HALPHA prediction from latent vectors (R² ≈ 0.093, promising given data limits).
 
 ---
 
 ## Next Steps
 
-- **Full Spectral Order Integration**: Expand training to additional orders beyond 25, 46, 47 to capture full activity information.
+- **Spectral Expansion**:
+  - Extend analysis beyond order 25.
+  - Include multiple orders while preserving focus on activity indicators (Hα, Ca II, etc.).
 
-- **Pipeline Scaling**: Build end-to-end workflow: order selection → autoencoder training → decorrelation → activity prediction.
+- **Resolution Experiments**:
+  - Train models at reduced spectral resolution and assess impact on latent interpretability and robustness.
 
-- **Decoder-Free Regression Models**: Freeze encoder, use latent space as input to predict activity indicators directly.
+- **Architecture Improvements**:
+  - Test deeper encoder/decoder structures.
+  - Add skip connections to improve spectral reconstructions.
+  - Explore structured latent regularization (e.g., disentanglement, variational techniques).
 
-- **Architectural Refinement**:
-  - Explore deeper encoder/decoder
-  - Skip connections
-  - More structured latent space constraints (e.g., disentanglement)
+- **Activity Indicator Prediction**:
+  - Build decoder-free regression models: 
+    - Freeze encoder.
+    - Train neural networks to predict RV, BIS, FWHM, CONTRAST, and HALPHA from latent vectors.
+    - Evaluate generalization.
 
-- **Resolution Experiments**: Investigate reduced-resolution spectra to test generalization and robustness.
+- **Lomb-Scargle Refinement**:
+  - Refine periodogram analysis:
+    - Focus on significant latent modes (FAP < 0.01).
+    - Track stability across different architectures.
 
 - **Documentation & Reporting**:
-  - Maintain visual diagnostics (correlation matrices, UMAPs, periodograms)
-  - Continue weekly reporting and visual inspection of residual SNR traces
+  - Update README and weekly reports.
+  - Organize visual outputs (periodograms, UMAPs, reconstructions) into a clean analysis notebook.
+  - Start preparing polished plots for final project reporting.
 
 ---
 
