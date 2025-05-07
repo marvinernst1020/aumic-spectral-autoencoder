@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "exoplanet-autoencoder"
+version = "0.1.0"
+description = "Modeling stellar activity in M-dwarfs using autoencoders for AUMIC"
+authors = ["Marvin Ernst <me1020@gmx.de>"]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.11"
+numpy = "^1.24.0"
+scipy = "^1.9.3"
+matplotlib = "^3.6.3"
+scikit-learn = "^1.1.3"
+pandas = "^1.5.3"
+tensorflow = "^2.15"
+astropy = "^5.2"
+umap-learn = "^0.5.5"
+seaborn = "^0.12.2"
+imageio = "^2.31"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

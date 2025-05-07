@@ -1,33 +1,27 @@
 # aumicAE: Spectral Variability Encoding of AU Microscopii
 
-This project applies deep learning techniques to **high-resolution optical spectra** of the active M-dwarf star **AU Microscopii**, using data from the **CARMENES VIS_A channel**. The aim is to learn a compressed latent representation of the star's spectral variability — caused by magnetic activity — using convolutional autoencoders.
-
-The project is inspired by the methodology from:
-> Mas-Buitrago et al. (2024), *A&A 687, A205*  
-> [https://doi.org/10.1051/0004-6361/202449865](https://doi.org/10.1051/0004-6361/202449865)
-
-However, while that paper estimates stellar parameters across multiple stars, this project focuses on the **spectral time series of a single star**, using the latent space to analyze temporal variability due to surface activity.
+This project applies deep learning techniques to **high-resolution optical spectra** of the active M-dwarf star **AU Microscopii**, using data from the **CARMENES VIS_A channel**. The aim is to learn a compressed latent representation of the star's *spectral variability* — caused by *magnetic activity* — using convolutional autoencoders. The analysis focuses both on full-order spectra and targeted spectral regions, particularly the **asymmetry and variability of chromospheric lines** such as H\alpha and other key lines defined in the mask.
 
 ---
 
 ## Project Goals
 
-- Load and preprocess high-resolution AU Mic spectra (VIS_A arm)
-- Normalize and stack consistent spectral orders
-- Train 1D convolutional autoencoders (standard and denoising) to learn compressed representations
-- Track changes in the latent space over time
-- Correlate latent parameters with stellar activity (e.g., flares, line indices)
+- Preprocess high-resolution CARMENES spectra (VIS\_A arm), ensuring consistent normalization
+- Train 1D convolutional autoencoders (standard, denoising, and variational) on single orders and multi-order stacks
+- Track evolution of latent representations over time
+- Correlate latent dimensions with activity indicators (e.g., Hα, RV, BIS, FWHM) 
+- Analyze periodicity in latent space using Lomb-Scargle periodograms
 
 ---
 
 ## Directory Structure
 
 ```plaintext
-aumicAE/ 
+aumicAE/
 ├── notebooks/
-│   ├── check_lines
-│   ├── gif_frames
-│   ├── outputs
+│   ├── check_lines/
+│   ├── gif_frames/
+│   ├── outputs/
 │   ├── 01_explore_carvis.ipynb
 │   ├── 02_prototype_autoencoder.ipynb
 │   ├── 03_latent_analysis.ipynb
@@ -38,19 +32,25 @@ aumicAE/
 │   └── 08_full_pipeline.ipynb
 ├── src/
 │   ├── data/
-│   │   └── preprocess.py          # load_spectrum, normalize_orders
+│   │   └── preprocess.py
 │   ├── models/
-│   │   └── autoencoder.py         # build_autoencoder(), build_denoising_ae()
-│   ├── train.py                   # train_autoencoder(cfg), train_denoising(cfg)
+│   │   └── autoencoder.py
+│   ├── train.py
 │   └── utils/
-│       └── visualization.py       # plot_latent_evolution, plot_denoising
+│       └── visualization.py
 ├── configs/
-│   └── base.yaml                  # orders: [25, 46, 47], latent_dim: 8, ...
+│   └── base.yaml
 ├── data/
+│   ├── AUMic/
+│   │   ├── CARNIR/
+│   │   ├── CARVIS/
 │   ├── carvis_visA/
-│   │   ├── vis_a_files_all.txt  
+│   │   ├── vis_a_files_all.txt
 │   │   └── vis_a_files.txt
-│   └── CARM_VIS_M15.mas           # the mask
+│   ├── masks/
+│   │   └── CARM_VIS_M15.mas
+│   └── meta/
+│       └── J20451-313.ccfpar.dat
 ├── outputs/
 │   ├── latent/
 │   ├── models/
@@ -58,18 +58,22 @@ aumicAE/
 │   ├── logs/
 │   └── preprocessed/
 ├── requirements.txt
+├── .python-version
+├── poetry.lock
+├── pyproject.toml
 └── README.md
 ```
 
-Note: Large data files are stored in aumicAE1/ due to repository size limits.
+> **Note**: Large `.fits` files and intermediate data products are excluded via `.gitignore`.
+> If needed, contact me at [me1020@gmx.de](mailto:me1020@gmx.de) for access.
 
 ---
 
 ## Environment Setup
 
-- Python 3.11
-- TensorFlow ≥ 2.13
-- astropy, numpy, matplotlib, etc. (see *requirements.txt*)
+* Python 3.11
+* Poetry-managed environment (see `pyproject.toml` or `requirements.txt`)
+* Key packages: `tensorflow`, `astropy`, `scikit-learn`, `umap-learn`, `matplotlib`, `seaborn`
 
 ---
 
@@ -115,40 +119,19 @@ Note: Large data files are stored in aumicAE1/ due to repository size limits.
 
 ## Next Steps
 
-- **Spectral Expansion**:
-  - Extend analysis beyond order 25.
-  - Include multiple orders while preserving focus on activity indicators (Hα, Ca II, etc.).
-
-- **Resolution Experiments**:
-  - Train models at reduced spectral resolution and assess impact on latent interpretability and robustness.
-
-- **Architecture Improvements**:
-  - Test deeper encoder/decoder structures.
-  - Add skip connections to improve spectral reconstructions.
-  - Explore structured latent regularization (e.g., disentanglement, variational techniques).
-
-- **Activity Indicator Prediction**:
-  - Build decoder-free regression models: 
-    - Freeze encoder.
-    - Train neural networks to predict RV, BIS, FWHM, CONTRAST, and HALPHA from latent vectors.
-    - Evaluate generalization.
-
-- **Lomb-Scargle Refinement**:
-  - Refine periodogram analysis:
-    - Focus on significant latent modes (FAP < 0.01).
-    - Track stability across different architectures.
-
-- **Documentation & Reporting**:
-  - Update README and weekly reports.
-  - Organize visual outputs (periodograms, UMAPs, reconstructions) into a clean analysis notebook.
-  - Start preparing polished plots for final project reporting.
+* **Multi-order Modeling**: Extend models to include stacked spectra, i.e, I will start with the entire spectra and then cut it down somewhat.
+* **Architecture Improvements**: Add skip connections; explore deeper/lighter encoder-decoder variants
+* **Variational & Disentangled Models**: Explore β-VAE, total correlation penalties
+* **Activity Indicator Prediction**: Train regressors on latent vectors to predict RV, FWHM, BIS, contrast, and Hα
+* **Refined Periodogram Study**: Focus on FAP < 0.01 signals and architecture-agnostic features
+* **Final Report & Visualization**: Polish plots, prepare publication-quality visuals, consolidate results
 
 ---
 
 ## Contact
 
-Developed by Marvin Ernst  
-Barcelona School of Economics – MSc in Data Science Methodology  
-Project supervised by Dr. Manuel Perger
+**Marvin Ernst**
+Barcelona School of Economics – MSc in Data Science Methodology
+Project supervised by **Dr. Manuel Perger**
 
 ---
