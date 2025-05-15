@@ -26,6 +26,7 @@ outputs/
 notebooks/check_lines/
 notebooks/gif_frames/
 notebooks/outputs/
+*.run
 
 # Logs and system
 *.log
