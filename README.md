@@ -1,6 +1,6 @@
 # aumicAE: Spectral Variability Encoding of AU Microscopii
 
-This project applies deep learning techniques to **high-resolution optical spectra** of the active M-dwarf star **AU Microscopii**, using data from the **CARMENES VIS_A channel**. The aim is to learn a compressed latent representation of the star's *spectral variability* — caused by *magnetic activity* — using convolutional autoencoders. The analysis focuses both on full-order spectra and targeted spectral regions, particularly the **asymmetry and variability of chromospheric lines** such as H\alpha and other key lines defined in the mask.
+This project applies deep learning techniques to **high-resolution optical spectra** of the active M-dwarf star **AU Microscopii**, using data from the **CARMENES VIS_A channel**. The aim is to learn a compressed latent representation of the star's *spectral variability* — caused by *magnetic activity* — using convolutional autoencoders. The analysis focuses both on full-order spectra and targeted spectral regions, particularly the **asymmetry and variability of chromospheric lines** such as Hα and other key lines defined in the mask.
 
 ---
 
@@ -131,7 +131,9 @@ aumicAE/
 ## Contact
 
 **Marvin Ernst**
+
 Barcelona School of Economics – MSc in Data Science Methodology
+
 Project supervised by **Dr. Manuel Perger**
 
 ---
