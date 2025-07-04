@@ -1,9 +1,9 @@
 [tool.poetry]
-name = "exoplanet-autoencoder"
+name = "aumic"
 version = "0.1.0"
-description = "Modeling stellar activity in M-dwarfs using autoencoders for AU Mic"
+description = "Autoencoder-based spectral modeling of AU Mic using high-res CARMENES VIS_A spectra."
 authors = ["Marvin Ernst <me1020@gmx.de>"]
-package-mode = false
+packages = [{ include = "aumic", from = "src" }]
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -26,7 +26,7 @@ torchaudio = "^2.5"
 
 # TensorFlow 2.15.0 installed manually via pip due to Poetry resolver conflict
 
-# Jupyter & notebook support
+# Jupyter and notebook support
 ipykernel = "^6.29"
 jupyter-core = "^5.7"
 matplotlib-inline = "^0.1.7"
