@@ -59,18 +59,17 @@ AUMICAE/
 │   ├── 14_run_vae_pipeline.ipynb
 │   └── 15_exact_metadata.ipynb
 ├── src/
-│   ├── analysis/
-│   │   ├── latent_analysis.py
-│   │   └── visualization.py
-│   ├── data/
-│   │   ├── loader.py
-│   │   └── preprocess.py
-│   ├── models/
-│   │   ├── training.py
-│   │   ├── utils.py
-│   │   └── vae_model.py
-│   └── spectrumnet/
-│       └── vae_model.py
+│   └── aumic/
+│       ├── analysis/
+│       │   ├── latent_analysis.py
+│       │   └── visualization.py
+│       ├── data/
+│       │   ├── loader.py
+│       │   └── preprocess.py
+│       └── models/
+│           ├── training.py
+│           ├── utils.py
+│           └── vae_model.py
 ├── .python-version
 ├── poetry.lock
 ├── pyproject.toml
