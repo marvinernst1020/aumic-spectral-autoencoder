@@ -171,8 +171,11 @@ Important notebook to set all configurations and run the entire pipleine and vis
 ## Contact
 
 **Marvin Michel Ernst**
+
+contact: [me1020@gmx.de](mailto:me1020@gmx.de)
+
 MSc in Data Science Methodology (Barcelona School of Economics)
+
 Supervised by **Dr. Manuel Perger (ICE-CSIC)**
-[me1020@gmx.de](mailto:me1020@gmx.de)
 
 ---
