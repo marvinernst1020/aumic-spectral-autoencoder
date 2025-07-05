@@ -78,7 +78,7 @@ AUMICAE/
 └── EXPERIMENT_LOG.md
 ````
 
-Important notebook to set all configurations and run the entire pipleine and visualize the results: `14_run_vae_pipeline.ipynb`.
+Important notebook to set all configurations and run the entire pipeline and visualize the results: `14_run_vae_pipeline.ipynb`.
 
 ---
 
@@ -172,7 +172,7 @@ Important notebook to set all configurations and run the entire pipleine and vis
 
 **Marvin Michel Ernst**
 
-contact: [me1020@gmx.de](mailto:me1020@gmx.de)
+*Contact:* [me1020@gmx.de](mailto:me1020@gmx.de)
 
 MSc in Data Science Methodology (Barcelona School of Economics)
 
