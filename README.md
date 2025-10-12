@@ -133,6 +133,17 @@ Important notebook to set all configurations and run the entire pipeline and vis
 
 - Interpolation to a **common wavelength grid**
 
+
+<p align="center">
+  <img src="imgs/full_spectrum_with_mask.png" alt="Full spectrum with mask" width="95%">
+</p>
+
+<p align="center">
+  <img src="imgs/rv_shift.png" alt="Radial velocity shift" width="90%"><br>
+  <img src="imgs/zero_mean.png" alt="Zero-mean normalization" width="90%"><br>
+  <img src="imgs/unit_variance.png" alt="Unit-variance scaling" width="90%">
+</p>
+
 ---
 
 ## Analysis and Evaluation
@@ -147,6 +158,56 @@ Important notebook to set all configurations and run the entire pipeline and vis
 - **Reconstruction**:
   - High fidelity even after denoising
   - Full pipeline supports comparison across model types
+
+---
+
+### Modeling Approach
+<p align="center">
+  <img src="imgs/autoencoder.png" alt="Autoencoder concept" width="40%">
+</p>
+
+<p align="center">
+  <img src="imgs/vae.png" alt="Variational autoencoder" width="95%">
+</p>
+
+---
+
+### Example Region (Order 32)
+<p align="center">
+  <img src="imgs/order32_full.png" alt="Order 32 full" width="74%"><br>
+  <img src="imgs/order32_selected.png" alt="Order 32 selected" width="74%">
+</p>
+
+---
+
+### Latent Space & Metadata
+<p align="center">
+  <img src="imgs/SNR_UMAP.png" alt="UMAP colored by SNR" width="74%"><br>
+  <img src="imgs/comparison_no_RVshift.png" alt="SNR comparison without RV shift" width="74%"><br>
+  <img src="imgs/RV_UMAP.png" alt="UMAP colored by RV" width="74%"><br>
+  <img src="imgs/FWHM_UMAP.png" alt="UMAP colored by FWHM" width="74%"><br>
+  <img src="imgs/Cntrast_UMAP.png" alt="UMAP colored by contrast" width="74%"><br>
+  <img src="imgs/BJD_UMAP.png" alt="UMAP colored by BJD" width="74%"><br>
+  <img src="imgs/BJD_norm.png" alt="BJD with block-wise normalization" width="74%">
+</p>
+
+---
+
+### Temporal Structure
+<p align="center">
+  <img src="imgs/laten_vs_BJD.png" alt="Latent dimension vs BJD" width="95%"><br>
+  <img src="imgs/lomb_scargle.png" alt="Lomb-Scargle periodogram" width="84%"><br>
+  <img src="imgs/phase_folded.png" alt="Phase-folded latent dimension" width="94%">
+</p>
+
+---
+
+### Reconstructions
+<p align="center">
+  <img src="imgs/reconstruction_FULL.png" alt="Reconstruction performance (FULL)" width="95%"><br>
+  <img src="imgs/reconstruction_UNET.png" alt="Reconstruction performance (UNetVAE1D)" width="95%">
+</p>
+
 
 ---
 
